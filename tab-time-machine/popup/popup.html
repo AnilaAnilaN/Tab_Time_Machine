@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tab Time Machine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.441.0/font/lucide.min.css" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo-mark">
+          <i class="icon-clock-rewind"></i>
+        </div>
+        <div class="header-text">
+          <span class="app-name">Tab Time Machine</span>
+          <span class="app-tagline">Session memory</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="btn-search" title="Search sessions">
+          <i class="icon-search"></i>
+        </button>
+        <button class="icon-btn danger" id="btn-clear-all" title="Clear all sessions">
+          <i class="icon-trash-2"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Active session bar -->
+    <div class="active-bar" id="active-bar" style="display:none">
+      <div class="active-pulse"></div>
+      <span class="active-label">Recording session</span>
+      <span class="active-tabs" id="active-tab-count">0 tabs</span>
+    </div>
+
+    <!-- Search bar -->
+    <div class="search-bar" id="search-bar" style="display:none">
+      <i class="icon-search"></i>
+      <input type="text" id="search-input" placeholder="Search sessions, URLs, titles…" />
+      <button class="icon-btn small" id="btn-close-search"><i class="icon-x"></i></button>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="sessions">
+        <i class="icon-layers"></i> Sessions
+      </button>
+      <button class="tab-btn" data-tab="insights">
+        <i class="icon-bar-chart-2"></i> Insights
+      </button>
+    </div>
+
+    <!-- Main content -->
+    <main class="content" id="content">
+      <div class="loading-state" id="loading">
+        <div class="spinner"></div>
+        <span>Loading sessions…</span>
+      </div>
+      <div class="empty-state" id="empty-state" style="display:none">
+        <i class="icon-ghost"></i>
+        <p>No sessions yet</p>
+        <span>Start browsing to record your first session</span>
+      </div>
+      <div id="sessions-panel"></div>
+      <div id="insights-panel" style="display:none"></div>
+    </main>
+  </div>
+
+  <script src="../utils/time.js"></script>
+  <script src="../storage/sessionManager.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
